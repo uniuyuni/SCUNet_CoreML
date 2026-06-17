@@ -1,0 +1,24 @@
+[workspace]
+authors = ["Nagi NR"]
+channels = ["conda-forge"]
+name = "scunet-coreml"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[dependencies]
+python = "3.11.*"
+pip = ">=24"
+git = ">=2.40"
+
+[pypi-dependencies]
+scunet-coreml = { path = ".", editable = true }
+torch = ">=2.1"
+numpy = ">=1.24"
+coremltools = ">=9.0,<10"
+requests = ">=2.31"
+
+[tasks]
+setup-assets = "scunet-coreml-setup --root ."
+export-coreml = "scunet-coreml-setup --root . --skip-clone --skip-download"
+install-platypus-helper = "python scripts/install_platypus_helper.py"
+check = "python -c 'from scunet_coreml import SCUNetCoreML, DenoiseConfig; print(\"ok\")'"

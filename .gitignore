@@ -1,0 +1,8 @@
+.pixi/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+checkpoints/
+models/
+third_party/

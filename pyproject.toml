@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "scunet-coreml"
+version = "0.1.0"
+description = "SCUNet Core ML inference helpers for Apple Silicon."
+requires-python = ">=3.11"
+dependencies = [
+  "numpy",
+  "torch",
+  "coremltools",
+  "requests",
+]
+
+[project.scripts]
+scunet-coreml-setup = "scunet_coreml.setup_assets:main"
+scunet-coreml-export = "scunet_coreml.export_coreml:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/scunet_coreml"]
