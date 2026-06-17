@@ -95,9 +95,10 @@ def predict(engine: SCUNetCoreML, np_image: np.ndarray, restore_low_frequency: b
             result,
             org_image,
             sigma=75,
-            highlight_threshold=0.70,
-            highlight_transition=0.40,
+            highlight_threshold=0.70 * hdr_white,
+            highlight_transition=0.40 * hdr_white,
             highlight_detail_strength=0.20,
+            luminance_transfer_strength=0.0,
         )
 
     logging.info(
