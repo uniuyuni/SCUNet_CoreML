@@ -58,7 +58,7 @@ def _set_progress(done: int, total: int) -> None:
     _set_wait_text(f"SCUNet {done} / {total}")
 
 
-def setup(compute_units: str = "all", tile: int = 448, overlap: int = 64):
+def setup(compute_units: str = "cpu_and_gpu", tile: int = 448, overlap: int = 64):
     cfg = DenoiseConfig(
         model_path=DEFAULT_MODEL,
         compute_units=compute_units,

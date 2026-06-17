@@ -49,7 +49,7 @@ def export_models(root: Path, weights: Path, force: bool = False) -> dict[str, s
     if out.exists() and not force:
         print(f"Core ML model already exists: {out}")
     else:
-        export_coreml(weights, out, tile=448, convert_to="mlprogram", precision="float16", compute_units="all")
+        export_coreml(weights, out, tile=448, convert_to="mlprogram", precision="float16", compute_units="cpu_and_gpu")
     return {"model": str(out), "checkpoint": str(weights), "scunet_repo": str(root / "third_party" / "SCUNet")}
 
 

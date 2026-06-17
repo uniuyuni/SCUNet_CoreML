@@ -38,7 +38,7 @@ def export_coreml(
     tile: int = 448,
     convert_to: str = "mlprogram",
     precision: str = "float16",
-    compute_units: str = "all",
+    compute_units: str = "cpu_and_gpu",
 ) -> Path:
     import coremltools as ct
 
@@ -75,7 +75,7 @@ def main() -> None:
     ap.add_argument("--tile", type=int, default=448)
     ap.add_argument("--convert-to", choices=["mlprogram", "neuralnetwork"], default="mlprogram")
     ap.add_argument("--precision", choices=["float32", "float16"], default="float16")
-    ap.add_argument("--compute-units", choices=["all", "cpu_only", "cpu_and_gpu", "cpu_and_ne"], default="all")
+    ap.add_argument("--compute-units", choices=["all", "cpu_only", "cpu_and_gpu", "cpu_and_ne"], default="cpu_and_gpu")
     args = ap.parse_args()
     export_coreml(
         args.weights,

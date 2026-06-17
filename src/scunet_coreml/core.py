@@ -51,7 +51,7 @@ def compute_unit(name: str):
 @dataclass
 class DenoiseConfig:
     model_path: str | Path
-    compute_units: str = "all"
+    compute_units: str = "cpu_and_gpu"
     tile: int = 448
     overlap: int = 64
     progress_every: int = 4
