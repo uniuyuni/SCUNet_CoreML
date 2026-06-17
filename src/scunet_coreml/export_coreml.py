@@ -50,12 +50,13 @@ def export_coreml(
         max_diff = float((model(example) - traced(example)).abs().max().item())
     print(f"trace max abs diff: {max_diff:.8f}")
 
+    deployment_target = ct.target.iOS14 if convert_to == "neuralnetwork" else ct.target.iOS15
     kwargs = {
         "convert_to": convert_to,
         "inputs": [ct.TensorType(name="input", shape=example.shape, dtype=np.float32)],
         "outputs": [ct.TensorType(name="output", dtype=np.float32)],
         "compute_units": compute_unit(compute_units),
-        "minimum_deployment_target": ct.target.macOS13,
+        "minimum_deployment_target": deployment_target,
     }
     if convert_to == "mlprogram":
         kwargs["compute_precision"] = ct.precision.FLOAT16 if precision == "float16" else ct.precision.FLOAT32
