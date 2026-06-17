@@ -6,3 +6,5 @@ __pycache__/
 checkpoints/
 models/
 third_party/
+test_inputs/
+test_outputs/

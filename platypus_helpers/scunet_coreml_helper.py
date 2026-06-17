@@ -85,9 +85,9 @@ def predict(engine: SCUNetCoreML, np_image: np.ndarray, restore_low_frequency: b
     _set_wait_text("SCUNet CoreML...")
     t0 = time.time()
     k = aiutils.LOG1P_TONEMAP_K_DEFAULT
-    work = aiutils.log1p_tonemap_forward(org_image, k=k, clip_nonnegative=True)
+    work, hdr_white = aiutils.log1p_tonemap_forward_hdr(org_image, k=k, clip_nonnegative=True)
     result, meta = engine.denoise(work)
-    result = aiutils.log1p_tonemap_inverse(result, k=k)
+    result = aiutils.log1p_tonemap_inverse_hdr(result, hdr_white, k=k)
 
     if restore_low_frequency:
         _set_wait_text("Finalizing...")
